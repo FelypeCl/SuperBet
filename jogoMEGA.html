@@ -1,0 +1,86 @@
+<meta charset="UTF-8">
+
+<h1>LOTERIA</h1>
+
+<input type="submit" id="sortear" value="Sorteie os números.">
+<br><br>
+<input type="text" id="numero">
+<input type="submit" id="adivinhar" value="Tente adivinhar os números!">
+
+<script>
+    var sorteado=[];
+    var tentativa=[];
+    var saldo=9000.00
+
+    var aposta=parseFloat(prompt("Informe o valor da aposta"));
+    while(isNaN(aposta || aposta<=0 || aposta>saldo)){
+        aposta=prompt("Valor da aposta inválido. Tente outro valor:");
+    }
+
+    function sorteio(){
+        while(sorteado.length<6){
+            var x=parseInt(Math.round(Math.random()*60));
+            if(sorteado.indexOf(x)==-1 && x!=0){
+                sorteado.push(x);
+            }
+        }
+        console.log(sorteado);
+    }
+
+    function chute(){
+        var numero=document.getElementById("numero").value;
+        var numeroInteiro=parseInt(numero);
+        if(isNaN(numeroInteiro)){
+            alert('Você não colocou um número. Tente novamente.');
+            return;
+        }
+        for(i=0;i<tentativa.length;i++){
+            if(tentativa[i]==numeroInteiro){
+                alert('Número já inserido.')
+                return;
+            }
+        }
+        tentativa.push(numeroInteiro);
+        console.log(tentativa);
+
+        if(tentativa.length===6){
+        document.write("Os número sorteados foram: "+sorteado);
+        document.write("<br><br>O seus números são: "+tentativa);
+        comparacao();
+        }
+    }
+
+    function comparacao(){
+        var x=0;
+        var junto=tentativa.concat(sorteado);
+        var semRep= junto.filter(function(el,i){
+            return junto.indexOf(el)===i;
+        });
+
+        x= junto.length-semRep.length;
+
+        if(x===6){
+            document.write("<hr><br>Nossa, você acertou todos os números! Parabéns!!!");
+            saldo+=aposta*1000;
+            console.log(saldo);
+        }  else if(x===5){ 
+            document.write("<hr><br> Você acertou "+x+" número(s)!");
+            saldo+=aposta*300;
+            console.log(saldo);
+        }else if(x===4){
+            document.write("<hr><br> Você acertou "+x+" número(s)!");
+            saldo+=aposta*50;
+            console.log(saldo);
+        } else{
+            document.write("<hr><br> Você acertou "+x+" número(s)!");
+            saldo-=aposta;
+            console.log(saldo);
+        }
+        
+    }
+
+    var botaoSorteio=document.getElementById("sortear");
+    botaoSorteio.onclick=sorteio;
+    var botaoAdivinhar=document.getElementById("adivinhar");
+    botaoAdivinhar.onclick=chute;
+</script>

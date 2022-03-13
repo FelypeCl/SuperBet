@@ -1,0 +1,25 @@
+<script>
+    var numero=Math.round(Math.random()*25);
+    var saldo=9000.00
+    console.log(numero);
+
+    var aposta=parseFloat(prompt("Informe o valor da aposta:"));
+    while(isNaN(aposta) || aposta<=0 || aposta>saldo){
+        aposta=parseFloat(prompt("Informe um valor válido para a aposta:"));
+    }
+
+    var chute=parseInt(prompt("Informe o número:"));
+    while(isNaN(chute) || chute<=0){
+        chute=parseInt(prompt("Informe um número válido:"));
+    }
+
+    if(chute==numero){
+        alert("Parabéns! Você ganhou!!");
+        saldo+=aposta*5;
+        console.log(saldo);    
+    }else{
+        alert("Você perdeu. Mais sorte na próxima vez.");
+        saldo+=-aposta;
+        console.log(saldo);
+    }
+</script>
