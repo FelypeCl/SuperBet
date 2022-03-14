@@ -1,8 +1,12 @@
 function botaoDepositar(valorDepositado){
+    if(isNaN(valorDepositado)){
+        alert("Insira um número.")
+    }else{
     if(valorDepositado<=0){
         alert("Valor inválido!");
     }else{
         conta.saldo+=valorDepositado;
+    }
     }
 }
 

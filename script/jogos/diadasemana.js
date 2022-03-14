@@ -11,7 +11,7 @@ function iniciarDiaDaSemana(dificuldade){
                     if(!isNaN(valorDaAposta)){
                         if(valorDaAposta <= conta.saldo){
                             localStorage.setItem("valorAposta", valorDaAposta);
-                            comecarJogo();
+                            comecarJogoFacil();
                         } else {
                             valorDaAposta = document.getElementById("valorAposta").value;
                             alert("Saldo insuficiente para aposta!");
@@ -37,56 +37,75 @@ function iniciarDiaDaSemana(dificuldade){
     }
 }
 
-function comecarJogo(){
+function comecarJogoFacil(){
     document.getElementById('solicitarValorDaAposta').style.display="none";
     document.getElementById('diasDaSemana').style.display="block";
     carregarNomesBotao();
 
-    var chute;
+    var chute = [];
     valorDaAposta = localStorage.getItem("valorAposta");
 
     document.getElementById("segunda").addEventListener("click",function(event){
-        chute = 1;
+        verificarQntdEscolhas(1,3);
     });
     document.getElementById('terca').addEventListener("click",function(event){
-        chute = 2;
+        verificarQntdEscolhas(2,3);
     });
     document.getElementById('quarta').addEventListener("click",function(event){
-        chute = 3;
+        verificarQntdEscolhas(3,3);
     });
     document.getElementById('quinta').addEventListener("click",function(event){
-        chute = 4;
+        verificarQntdEscolhas(4,3);
     });
     document.getElementById('sexta').addEventListener("click",function(event){
-        chute = 5;
+        verificarQntdEscolhas(5,3);
     });
     document.getElementById('sabado').addEventListener("click",function(event){
-        chute = 6;
+        verificarQntdEscolhas(6,3);
     });
     document.getElementById('domingo').addEventListener("click",function(event){
-        chute = 7;
+        verificarQntdEscolhas(7,3);
     });
 
-    var numero = inteiroAleatorio(1,7);
-    var numero2 = inteiroAleatorio(1,7);
-    var numero3 = inteiroAleatorio(1,7);
-    //var chutado = [numero, numero2, numero3];
-
+    var diaVencedor = 3;
+    
     document.getElementById("comecarAposta").addEventListener("click", function(event){
-        if(chute==numero){
+        if(true){
             alert("Parabéns! Você ganhou!!");
-            conta.saldo+=valorDaAposta*2;
+            if(chute[0] == diaVencedor){
+                console.log("Segunda ganhou")
+            } if(chute[1] == diaVencedor){
+                console.log("Terca ganhou")
+            } if(chute[2] == diaVencedor){
+                console.log("Quarta ganhou")
+            }
+            conta.saldo+=valorDaAposta*1.5;
             carregarSaldo();
             console.log(conta.saldo);
-            numero = inteiroAleatorio(1,7);   
+            //diaVencedor = inteiroAleatorio(1,7);   
         }else{
             alert("Você perdeu. Mais sorte na próxima vez.");
             conta.saldo-=valorDaAposta;
             carregarSaldo();
             console.log(conta.saldo);
-            numero = inteiroAleatorio(1,7);
+            //diaVencedor = inteiroAleatorio(1,7);
         }
     });
+
+    function verificarQntdEscolhas(valorChute,num){
+        if(chute.length < num){
+            if(chute.includes(valorChute)){
+                console.log("Você já apostou esse número");
+            } else {
+                chute.push(valorChute);
+                for(i=0; i < 3; ++i){
+                    console.log("Escolha: "+chute[i]);
+                }
+            }
+        } else {
+            console.log("Você já gastou todas suas tentativas");
+        }
+    }
 
     /*
     Dificil
