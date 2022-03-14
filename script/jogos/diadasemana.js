@@ -127,7 +127,7 @@ function comecarCronometro(duracao, display){
 
     setInterval(function(){
 
-        segundos = parseInt(timer % 60, 10);
+        segundos = parseInt(timer % 60);
         segundos = segundos < 10 ? "0" + segundos : segundos;
         display.innerHTML = "Apostando em "+segundos+"..";
 
