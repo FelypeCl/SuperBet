@@ -13,7 +13,7 @@ function carregarSaldo(){
     document.getElementById("saldo").innerHTML = "R$"+Number(conta.saldo);
 }
 
-conta = new Conta("Felype", "O milionário", 9000.00);
+conta = new Conta("Leonardo", "O caba bom", 9000.00);
 
 document.getElementById("saldo").innerHTML = "R$"+conta.saldo;
 document.getElementById("nome").innerHTML = conta.nome;
