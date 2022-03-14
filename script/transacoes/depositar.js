@@ -6,6 +6,7 @@ function botaoDepositar(valorDepositado){
         alert("Valor inválido!");
     }else{
         conta.saldo+=valorDepositado;
+        localStorage.setItem("saldo", conta.saldo);
     }
     }
 }

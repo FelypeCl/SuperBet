@@ -46,17 +46,20 @@ function esconderDificuldades(jogo){
             document.getElementById('jogo1facil').style.display="none";
             document.getElementById('jogo1medio').style.display="none";
             document.getElementById('jogo1dificil').style.display="none";
+            document.getElementById("segundos").style.display="none";
             break;
         case 2: 
             document.getElementById('jogo2facil').style.display="none";
             document.getElementById('jogo2medio').style.display="none";
             document.getElementById('jogo2dificil').style.display="none";
+            document.getElementById("segundos").style.display="none";
             break;
             
         case 3: 
             document.getElementById('jogo3facil').style.display="none";
             document.getElementById('jogo3medio').style.display="none";
             document.getElementById('jogo3dificil').style.display="none";
+            document.getElementById("segundos").style.display="none";
             break;
         default:
             console.log("Dificuldade inválida");    

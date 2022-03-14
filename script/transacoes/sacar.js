@@ -6,6 +6,7 @@ function botaoSacar(valorSacar){
         alert("Impossível sacar esse valor!");
     } else{
         conta.saldo-=valorSacar;
+        localStorage.setItem("saldo", conta.saldo);
     }
 }
 }

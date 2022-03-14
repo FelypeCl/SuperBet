@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,59 +8,64 @@
     <link rel="stylesheet" href="css/style.css">
     <title>SuperBet</title>
 </head>
+
 <body>
     <div id="central">
         <div id="conteudo">
             <div id="perfil">
-                    <div id="perfilInfo">
-                        <img id="foto" src="img/Foto.png">
-                        <h1 id="nome">Felype</h1>
-                        <p id="titulo">O milionário</p>
-                        <p id="nivel">Lvl: 49</p>
-                    </div>
-                    <div id="botoes">
-                        <tr>
-                            <td><button id="depositar" class="btn">Depositar</button></td>
-                            <td><button id="sacar" class="btn">Sacar</button></td>
-                            <td><button class="btn" onclick="document.location.reload(true)">Sair</button></td>
-                            <td><h1 id="saldo">R$554.90</h1></td>
-                        </tr>
-                    </div>
+                <div id="perfilInfo">
+                    <img id="foto" src="img/Foto.png">
+                    <h1 id="nome">Felype</h1>
+                    <p id="titulo">O milionário</p>
+                    <p id="nivel">Lvl: 49</p>
+                </div>
+                <div id="botoes">
+                    <tr>
+                        <td><button id="depositar" class="btn">Depositar</button></td>
+                        <td><button id="sacar" class="btn">Sacar</button></td>
+                        <td><button class="btn" onclick="document.location.reload(true)">Sair</button></td>
+                        <td>
+                            <h1 id="saldo">R$554.90</h1>
+                        </td>
+                    </tr>
+                </div>
             </div>
             <div id="jogos">
-            <div id="centralizarJogos">
-                <div>
-                    <tr>
-                        <td><button id="jogo1" class="btnJogos">JOGO DO BICHO</button></td>
-                        <td><button id="jogo2" class="btnJogos">MEGA SENA</button></td>
-                        <td><button id="jogo3" class="btnJogos">DIA DA SEMANA</button></td>
-                    </tr>
-                </div>
-                <div id="solicitarValorDaAposta">
-                    <tr>
-                        <td><input id="valorAposta" type="text" placeholder="Insira o valor da aposta:"></td>
-                        <td><input id="apostar" type="submit"></td>
-                    </tr>
-                </div>
-                <!--Jogo do bicho-->
-                <div id="dificuldadeJogoDoBicho">
-                    <tr>
-                        <td><button id="jogo1facil" class="btnJogos"></button></td>
-                        <td><button id="jogo1medio" class="btnJogos">MÉDIO: 2.0x</button></td>
-                        <td><button id="jogo1dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
-                    </tr>
-                </div>
-                <!--Mega Sena-->
-                <div id="dificuldadeMegaSena">
-                    <tr>
-                        <td><button id="jogo2facil" class="btnJogos">FÁCIL: 1.2x</button></td>
-                        <td><button id="jogo2medio" class="btnJogos">MÉDIO: 2.0x</button></td>
-                        <td><button id="jogo2dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
-                    </tr>
-                </div>
-                <!--Dia Da Semana-->
-                <div id="diasDaSemana">
-                        <td><h1>Escolha um dia:</h1></td>
+                <div id="centralizarJogos">
+                    <div>
+                        <tr>
+                            <td><button id="jogo1" class="btnJogos">JOGO DO BICHO</button></td>
+                            <td><button id="jogo2" class="btnJogos">MEGA SENA</button></td>
+                            <td><button id="jogo3" class="btnJogos">DIA DA SEMANA</button></td>
+                        </tr>
+                    </div>
+                    <div id="solicitarValorDaAposta">
+                        <tr>
+                            <td><input id="valorAposta" type="text" placeholder="Insira o valor da aposta:"></td>
+                            <td><input id="apostar" type="submit"></td>
+                        </tr>
+                    </div>
+                    <!--Jogo do bicho-->
+                    <div id="dificuldadeJogoDoBicho">
+                        <tr>
+                            <td><button id="jogo1facil" class="btnJogos"></button></td>
+                            <td><button id="jogo1medio" class="btnJogos">MÉDIO: 2.0x</button></td>
+                            <td><button id="jogo1dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
+                        </tr>
+                    </div>
+                    <!--Mega Sena-->
+                    <div id="dificuldadeMegaSena">
+                        <tr>
+                            <td><button id="jogo2facil" class="btnJogos">FÁCIL: 1.2x</button></td>
+                            <td><button id="jogo2medio" class="btnJogos">MÉDIO: 2.0x</button></td>
+                            <td><button id="jogo2dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
+                        </tr>
+                    </div>
+                    <!--Dia Da Semana-->
+                    <div id="diasDaSemana">
+                        <td>
+                            <h1 id="dias">Escolha 3 dias:</h1>
+                        </td>
                         <td><input id="segunda" type="submit"></td>
                         <td><input id="terca" type="submit"></td>
                         <td><input id="quarta" type="submit"></td>
@@ -68,15 +74,16 @@
                         <td><input id="sabado" type="submit"></td>
                         <td><input id="domingo" type="submit"></td>
                         <td><input id="comecarAposta" type="submit"></td>
+                        <td><p id="segundos"></p></td>
+                    </div>
+                    <div id="dificuldadeDiaDaSemana">
+                        <tr>
+                            <td><button id="jogo3facil" class="btnJogos" onclick="iniciarDiaDaSemana(1)"></button></td>
+                            <td><button id="jogo3medio" class="btnJogos">MÉDIO: 2.0x</button></td>
+                            <td><button id="jogo3dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
+                        </tr>
+                    </div>
                 </div>
-                <div id="dificuldadeDiaDaSemana">
-                    <tr>
-                        <td><button id="jogo3facil" class="btnJogos" onclick="iniciarDiaDaSemana(1)"></button></td>
-                        <td><button id="jogo3medio" class="btnJogos">MÉDIO: 2.0x</button></td>
-                        <td><button id="jogo3dificil" class="btnJogos">DIFÍCIL: 3.0x</button></td>
-                    </tr>
-                </div>
-            </div>
             </div>
         </div>
     </div>
@@ -88,6 +95,7 @@
     <script src="script/jogos/diadasemana.js"></script>
     <script src="script/hidder.js"></script>
 </body>
+
 </html>
 
 <!--<div id="bicho">

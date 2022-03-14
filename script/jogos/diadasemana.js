@@ -1,15 +1,15 @@
 var valorDaAposta;
 
-function iniciarDiaDaSemana(dificuldade){
-    switch(dificuldade){
+function iniciarDiaDaSemana(dificuldade) {
+    switch (dificuldade) {
         case 1:
             esconderDificuldades(3);
             solicitarValorDeAposta();
-            document.getElementById("apostar").addEventListener("click", function(event){
+            document.getElementById("apostar").addEventListener("click", function (event) {
                 valorDaAposta = document.getElementById("valorAposta").value;
-                if(valorDaAposta.length > 0){
-                    if(!isNaN(valorDaAposta)){
-                        if(valorDaAposta <= conta.saldo){
+                if (valorDaAposta.length > 0) {
+                    if (!isNaN(valorDaAposta)) {
+                        if (valorDaAposta <= conta.saldo) {
                             localStorage.setItem("valorAposta", valorDaAposta);
                             comecarJogoFacil();
                         } else {
@@ -29,85 +29,134 @@ function iniciarDiaDaSemana(dificuldade){
         case 2:
 
             break;
-                
+
         case 3:
 
-             break; 
+            break;
         default: console.log("Dificuldade inválida");
     }
 }
 
-function comecarJogoFacil(){
-    document.getElementById('solicitarValorDaAposta').style.display="none";
-    document.getElementById('diasDaSemana').style.display="block";
+function comecarJogoFacil() {
+    document.getElementById('solicitarValorDaAposta').style.display = "none";
+    document.getElementById('diasDaSemana').style.display = "block";
     carregarNomesBotao();
 
     var chute = [];
+    var diaVencedor = inteiroAleatorio(1, 7);
     valorDaAposta = localStorage.getItem("valorAposta");
 
-    document.getElementById("segunda").addEventListener("click",function(event){
-        verificarQntdEscolhas(1,3);
+    document.getElementById("segunda").addEventListener("click", function (event) {
+        verificarQntdEscolhas(1, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('terca').addEventListener("click",function(event){
-        verificarQntdEscolhas(2,3);
+    document.getElementById('terca').addEventListener("click", function (event) {
+        verificarQntdEscolhas(2, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('quarta').addEventListener("click",function(event){
-        verificarQntdEscolhas(3,3);
+    document.getElementById('quarta').addEventListener("click", function (event) {
+        verificarQntdEscolhas(3, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('quinta').addEventListener("click",function(event){
-        verificarQntdEscolhas(4,3);
+    document.getElementById('quinta').addEventListener("click", function (event) {
+        verificarQntdEscolhas(4, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('sexta').addEventListener("click",function(event){
-        verificarQntdEscolhas(5,3);
+    document.getElementById('sexta').addEventListener("click", function (event) {
+        verificarQntdEscolhas(5, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('sabado').addEventListener("click",function(event){
-        verificarQntdEscolhas(6,3);
+    document.getElementById('sabado').addEventListener("click", function (event) {
+        verificarQntdEscolhas(6, 3);
+        verificarQntdDeDiasDisponiveis();
     });
-    document.getElementById('domingo').addEventListener("click",function(event){
-        verificarQntdEscolhas(7,3);
+    document.getElementById('domingo').addEventListener("click", function (event) {
+        verificarQntdEscolhas(7, 3);
+        verificarQntdDeDiasDisponiveis();
     });
 
-    var diaVencedor = 3;
-    
-    document.getElementById("comecarAposta").addEventListener("click", function(event){
-        if(true){
+    document.getElementById("comecarAposta").addEventListener("click", function (event) {
+        var segundos = document.getElementById("segundos");
+        comecarCronometro(3,segundos);
+        setTimeout(apostar, 4200);
+    });
+
+    function apostar(){
+        if (chute[0] == diaVencedor || chute[1] == diaVencedor || chute[2] == diaVencedor) {
             alert("Parabéns! Você ganhou!!");
-            if(chute[0] == diaVencedor){
-                console.log("Segunda ganhou")
-            } if(chute[1] == diaVencedor){
-                console.log("Terca ganhou")
-            } if(chute[2] == diaVencedor){
-                console.log("Quarta ganhou")
-            }
-            conta.saldo+=valorDaAposta*1.5;
+            conta.saldo += valorDaAposta * 1.5;
+            localStorage.setItem("saldo", conta.saldo);
             carregarSaldo();
-            console.log(conta.saldo);
-            //diaVencedor = inteiroAleatorio(1,7);   
-        }else{
-            alert("Você perdeu. Mais sorte na próxima vez.");
-            conta.saldo-=valorDaAposta;
-            carregarSaldo();
-            console.log(conta.saldo);
-            //diaVencedor = inteiroAleatorio(1,7);
-        }
-    });
-
-    function verificarQntdEscolhas(valorChute,num){
-        if(chute.length < num){
-            if(chute.includes(valorChute)){
-                console.log("Você já apostou esse número");
-            } else {
-                chute.push(valorChute);
-                for(i=0; i < 3; ++i){
-                    console.log("Escolha: "+chute[i]);
-                }
-            }
+            document.location.reload(true);
         } else {
-            console.log("Você já gastou todas suas tentativas");
+            alert("Você perdeu. Mais sorte na próxima vez.");
+            conta.saldo -= valorDaAposta;
+            localStorage.setItem("saldo", conta.saldo);
+            carregarSaldo();
+            document.location.reload(true);
         }
     }
 
-    /*
+    function verificarQntdEscolhas(valorChute, num) {
+        if (chute.length < num) {
+            if (chute.includes(valorChute)) {
+                alert("Você já escolheu esse dia.");
+            } else {
+                chute.push(valorChute);
+            }
+        } else {
+            alert("Você já selecionou todos os dias disponíveis.");
+        }
+    }
+
+    function verificarQntdDeDiasDisponiveis(){
+        if(chute.length == 1){
+            document.getElementById("dias").innerHTML = "Escolha 2 dias:";
+        } else if(chute.length == 2){
+            document.getElementById("dias").innerHTML = "Escolha 1 dia:";
+        } else {
+            document.getElementById("dias").innerHTML = "Limite de dias atingido.";
+            document.getElementById("dias").style.left = "470px";
+        }
+    }
+}
+
+function comecarCronometro(duracao, display){
+    document.getElementById("segundos").style.display="block";
+    var timer = duracao, segundos;
+
+    setInterval(function(){
+
+        segundos = parseInt(timer % 60, 10);
+        segundos = segundos < 10 ? "0" + segundos : segundos;
+        display.innerHTML = "Apostando em "+segundos+"..";
+
+        if(--timer < 0){
+            timer = duracao;
+        }
+
+        if(duracao = 0)
+            return;
+
+    },1000);
+}
+
+function carregarNomesBotao() {
+    document.getElementById('segunda').value = "SEGUNDA-FEIRA";
+    document.getElementById('terca').value = "TERÇA-FEIRA";
+    document.getElementById('quarta').value = "QUARTA-FEIRA";
+    document.getElementById('quinta').value = "QUINTA-FEIRA";
+    document.getElementById('sexta').value = "SEXTA-FEIRA";
+    document.getElementById('sabado').value = "SÁBADO";
+    document.getElementById('domingo').value = "DOMINGO";
+    document.getElementById('comecarAposta').value = "APOSTAR";
+}
+
+function inteiroAleatorio(min, max) {
+    return Math.round(Math.random() * (max - min + 1));
+}
+
+/*
     Dificil
 
     var numero = inteiroAleatorio(1,7);
@@ -128,19 +177,3 @@ function comecarJogoFacil(){
         }
     })
     */
-}
-
-function carregarNomesBotao(){
-    document.getElementById('segunda').value = "SEGUNDA-FEIRA";
-    document.getElementById('terca').value = "TERÇA-FEIRA";
-    document.getElementById('quarta').value = "QUARTA-FEIRA";
-    document.getElementById('quinta').value = "QUINTA-FEIRA";
-    document.getElementById('sexta').value = "SEXTA-FEIRA";
-    document.getElementById('sabado').value = "SÁBADO";
-    document.getElementById('domingo').value = "DOMINGO";
-    document.getElementById('comecarAposta').value = "APOSTAR";
-}
-
-function inteiroAleatorio(min,max){
-    return Math.round(Math.random() * (max - min + 1));
-}
