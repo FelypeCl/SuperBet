@@ -15,9 +15,9 @@
 
 #conteudo{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: -20px;
+    left: 60px;
+    transform: scale(80%);
     width: 1276px;
     height: 700px;
 }
@@ -195,7 +195,7 @@
     box-shadow: 0 0 10px rgb(167,73,73);
 }
 
-#apostar{
+#apostar,#gerador{
     font-size: 22px;
     color: white;
     border: 3px solid;
@@ -206,12 +206,21 @@
     cursor: pointer;
     width: 100px;
     height: 55px;
+    transition: all 300ms ease;
 }
 
-#apostar:hover{
+#gerador{
+    width: 320px;
+}
+
+#apostar:hover,#gerador:hover{
     border: 3px solid;
     border-color: rgb(230, 98, 98);
     box-shadow: 0 0 10px rgb(167,73,73);
+}
+
+#gerador:hover{
+    transform: scale(98%);
 }
 
 #diasDaSemana{
