@@ -119,9 +119,14 @@ function comecarJogoFacilDS() {
     });
 
     document.getElementById("comecarAposta").addEventListener("click", function (event) {
-        var segundos = document.getElementById("segundos");
-        comecarCronometro(3,segundos);
-        setTimeout(apostar, 4200);
+        if(chute.length == 0 || chute.length == 1 || chute.length == 2) {
+            alert("Você precisa selecionar um dia da semana antes de apostar.");
+        } else {
+            var segundos = document.getElementById("segundos");
+            comecarCronometro(3,segundos);
+            setTimeout(apostar, 4200);
+            document.getElementById("comecarAposta").disabled = "true";
+        }
     });
 
     function apostar(){
@@ -204,9 +209,14 @@ function comecarJogoMedioDS() {
     });
 
     document.getElementById("comecarAposta").addEventListener("click", function (event) {
-        var segundos = document.getElementById("segundos");
-        comecarCronometro(3,segundos);
-        setTimeout(apostar, 4200);
+        if(chute.length == 0 || chute.length == 1) {
+            alert("Você precisa selecionar um dia da semana antes de apostar.");
+        } else {
+            var segundos = document.getElementById("segundos");
+            comecarCronometro(3,segundos);
+            setTimeout(apostar, 4200);
+            document.getElementById("comecarAposta").disabled = "true";
+        }
     });
 
     function apostar(){
@@ -287,9 +297,14 @@ function comecarJogoDificilDS() {
     });
 
     document.getElementById("comecarAposta").addEventListener("click", function (event) {
-        var segundos = document.getElementById("segundos");
-        comecarCronometro(3,segundos);
-        setTimeout(apostar, 4200);
+        if(chute.length == 0) {
+            alert("Você precisa selecionar um dia da semana antes de apostar.");
+        } else {
+            var segundos = document.getElementById("segundos");
+            comecarCronometro(3,segundos);
+            setTimeout(apostar, 4200);
+            document.getElementById("comecarAposta").disabled = "true";
+        }
     });
 
     function apostar(){
