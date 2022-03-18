@@ -9,7 +9,7 @@ function iniciarDiaDaSemana(dificuldade) {
                 valorDaAposta = document.getElementById("valorAposta").value;
                 if (valorDaAposta.length > 0) {
                     if (!isNaN(valorDaAposta)) {
-                        if (valorDaAposta <= conta.saldo) {
+                        if (valorDaAposta <= conta.saldo && valorDaAposta != 0) {
                             localStorage.setItem("valorAposta", valorDaAposta);
                             comecarJogoFacilDS();
                         } else {
@@ -33,7 +33,7 @@ function iniciarDiaDaSemana(dificuldade) {
                 valorDaAposta = document.getElementById("valorAposta").value;
                 if (valorDaAposta.length > 0) {
                     if (!isNaN(valorDaAposta)) {
-                        if (valorDaAposta <= conta.saldo) {
+                        if (valorDaAposta <= conta.saldo && valorDaAposta != 0) {
                             localStorage.setItem("valorAposta", valorDaAposta);
                             comecarJogoMedioDS();
                         } else {
@@ -58,7 +58,7 @@ function iniciarDiaDaSemana(dificuldade) {
                 valorDaAposta = document.getElementById("valorAposta").value;
                 if (valorDaAposta.length > 0) {
                     if (!isNaN(valorDaAposta)) {
-                        if (valorDaAposta <= conta.saldo) {
+                        if (valorDaAposta <= conta.saldo && valorDaAposta != 0) {
                             localStorage.setItem("valorAposta", valorDaAposta);
                             comecarJogoDificilDS();
                         } else {
@@ -120,7 +120,7 @@ function comecarJogoFacilDS() {
 
     document.getElementById("comecarAposta").addEventListener("click", function (event) {
         if(chute.length == 0 || chute.length == 1 || chute.length == 2) {
-            alert("Você precisa selecionar um dia da semana antes de apostar.");
+            alert("Você precisa selecionar os dias da semana antes de apostar.");
         } else {
             var segundos = document.getElementById("segundos");
             comecarCronometro(3,segundos);
@@ -210,7 +210,7 @@ function comecarJogoMedioDS() {
 
     document.getElementById("comecarAposta").addEventListener("click", function (event) {
         if(chute.length == 0 || chute.length == 1) {
-            alert("Você precisa selecionar um dia da semana antes de apostar.");
+            alert("Você precisa selecionar os dias da semana antes de apostar.");
         } else {
             var segundos = document.getElementById("segundos");
             comecarCronometro(3,segundos);
